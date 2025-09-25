@@ -1,73 +1,93 @@
-# React + TypeScript + Vite
+# Real Estate DApp (Vite + React + Wagmi + RainbowKit)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a **mock real estate DApp** built with Vite, React, Wagmi, RainbowKit, and Viem. Users can browse properties, connect their Ethereum wallet, and submit offers. Offers are simulated on-chain and persisted in `localStorage`.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Browse premium properties in a responsive grid layout.
+- Connect Ethereum wallets using RainbowKit.
+- Make offers on properties with a **mock blockchain transaction** simulation.
+- Show transaction states: `pending → success/failure`.
+- Persist offers locally so users can view their submitted offers.
+- Separate "My Offers" page displaying all submitted offers as cards.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Vite** – fast React development.
+- **React** – frontend framework.
+- **TailwindCSS + DaisyUI** – responsive styling and card components.
+- **Wagmi + RainbowKit** – wallet integration.
+- **Viem** – simulate smart contract calls.
+- **React Router** – multi-page navigation.
+- **React Query** – optional for future server-side state management.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js >= 18
+- npm or yarn
+
+### Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run Development Server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+# or
+yarn dev
 ```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.  
+
+### Build for Production
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+Serve the production build:
+
+```bash
+npm run preview
+# or
+yarn preview
+```
+
+---
+
+## Design Decisions
+
+1. **Wallet Integration**: Used Wagmi + RainbowKit for multi-chain wallet support and smooth user experience.
+2. **Mock Blockchain Interaction**: Instead of deploying a contract, Viem is used to simulate `makeOffer(propertyId, amount)` transactions.
+3. **State Management**: Offers are persisted in `localStorage` to allow viewing submitted offers without a backend.
+4. **Responsive Design**: TailwindCSS + DaisyUI for fast, mobile-friendly, and consistent styling.
+5. **Separate Pages**: Home page for browsing properties, "My Offers" page to track all offers.
+
+---
+
+## Assumptions & Limitations
+
+- **No backend**: Offers are stored only in `localStorage` – refreshing on a different device will not retain state.
+- **Mock transactions**: Blockchain interactions are simulated. No actual funds are sent.
+- **Property Images**: Placeholder images are generated using `picsum.photos`.
+- **Property IDs**: Image mapping assumes `propertyId` matches array index.
+- **Offers**: Only one active offer per property per user is supported. Submitting a new offer replaces the previous one.
+
+---
+
+

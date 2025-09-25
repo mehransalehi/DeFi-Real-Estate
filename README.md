@@ -19,7 +19,7 @@ This is a **mock real estate DApp** built with Vite, React, Wagmi, RainbowKit, a
 
 - **Vite** – fast React development.
 - **React** – frontend framework.
-- **TailwindCSS + DaisyUI** – responsive styling and card components.
+- **TailwindCSS** – responsive styling and card components.
 - **Wagmi + RainbowKit** – wallet integration.
 - **Viem** – simulate smart contract calls.
 - **React Router** – multi-page navigation.
